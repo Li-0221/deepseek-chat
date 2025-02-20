@@ -5,17 +5,55 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "serve": "vite",
+    "build:dev": "vue-tsc && vite build --mode development",
+    "build:test": "vue-tsc && vite build --mode test",
+    "build:pro": "vue-tsc && vite build --mode production",
+    "type:check": "vue-tsc --noEmit --skipLibCheck",
+    "preview": "npm run build:dev && vite preview",
+    "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
+    "lint:prettier": "prettier --write \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "commit": "git add -A && czg && git push"
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "cz-git": "^1.11.0",
+    "czg": "^1.11.0",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-vue": "^9.32.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "postcss": "^8.5.3",
+    "postcss-html": "^1.8.0",
+    "prettier": "^3.5.1",
+    "stylelint": "^16.14.1",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^6.0.0",
+    "stylelint-config-recommended-scss": "^14.1.0",
+    "stylelint-config-recommended-vue": "^1.6.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
     "vue-tsc": "^2.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   }
 }

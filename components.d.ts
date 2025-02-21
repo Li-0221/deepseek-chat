@@ -9,8 +9,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ActionBar: typeof import('./src/components/ActionBar.vue')['default']
+    ActiveBar: typeof import('./src/components/ActiveBar.vue')['default']
+    App: typeof import('./src/components/App.vue')['default']
     Aside: typeof import('./src/components/Aside/index.vue')['default']
     ChatList: typeof import('./src/components/ChatList.vue')['default']
+    DownApp: typeof import('./src/components/DownApp.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
@@ -23,5 +26,6 @@ declare module 'vue' {
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ExpandFold: typeof import('./src/components/ExpandFold.vue')['default']
     TextArea: typeof import('./src/components/TextArea.vue')['default']
+    UserCenter: typeof import('./src/components/UserCenter.vue')['default']
   }
 }

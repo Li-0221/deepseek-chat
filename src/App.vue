@@ -1,5 +1,4 @@
 <template>
-  <!--手机 md 平板 xl电脑 -->
   <div class="h-full flex">
     <!-- 手机端header -->
     <header class="md:hidden absolute top-[10px] flex justify-between w-full px-4 h-[46px] items-center">
@@ -34,58 +33,8 @@
         <ChatList />
 
         <div class="h-[116px] py-[10px] px-3 text-sm">
-          <el-popover
-            width="200px"
-            popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
-          >
-            <template #reference>
-              <div
-                class="btn h-10 text-[#262626] flex items-center border-[#4d6bfe] border mb-2 rounded-xl py-[9px] px-3 cursor-pointer hover:bg-[rgb(239,246,255)]"
-              >
-                <PhoneSvg /> <span class="mx-2">下载 App</span> <img src="./assets/new.svg" alt="" class="w-9 h-4" />
-              </div>
-            </template>
-            <template #default>
-              <div>
-                <img src="./assets/qrcode.png" alt="" />
-                <p class="mt-2">扫码下载 DeepSeek APP</p>
-              </div>
-            </template>
-          </el-popover>
-
-          <el-popover
-            width="200px"
-            popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 6px;"
-          >
-            <template #reference>
-              <div class="h-12 p-2 flex items-center text-[#525252] rounded-xl cursor-pointer hover:bg-[rgb(239,246,255)]">
-                <div class="mr-2 rounded-full overflow-hidden">
-                  <img
-                    class="w-[30px] h-[30px]"
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
-                    alt=""
-                  />
-                </div>
-                个人信息
-              </div>
-            </template>
-            <template #default>
-              <ul class="info">
-                <li>
-                  <el-icon size="24"><Setting /></el-icon>系统设置
-                </li>
-                <li>
-                  <el-icon size="24"><Delete /></el-icon>删除所有对话
-                </li>
-                <li>
-                  <el-icon size="24"><Promotion /></el-icon>联系我们
-                </li>
-                <li>
-                  <el-icon size="24"><SwitchButton /></el-icon>退出登录
-                </li>
-              </ul>
-            </template>
-          </el-popover>
+          <DownApp :isExpand />
+          <UserCenter :isExpand />
         </div>
       </template>
 
@@ -102,57 +51,8 @@
           </el-popover>
         </div>
         <div>
-          <el-popover
-            width="200px"
-            popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
-          >
-            <template #reference>
-              <div
-                class="btn text-[rgb(139,139,139)] flex items-center mb-2 rounded-xl py-[9px] px-3 cursor-pointer hover:bg-[rgb(239,246,255)]"
-              >
-                <PhoneSvg class="w-7 h-7" />
-              </div>
-            </template>
-            <template #default>
-              <div>
-                <img src="./assets/qrcode.png" alt="" />
-                <p class="mt-2">扫码下载 DeepSeek APP</p>
-              </div>
-            </template>
-          </el-popover>
-
-          <el-popover
-            width="200px"
-            popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 6px;"
-          >
-            <template #reference>
-              <div class="h-12 p-2 flex items-center text-[#525252] rounded-xl cursor-pointer hover:bg-[rgb(239,246,255)]">
-                <div class="rounded-full overflow-hidden">
-                  <img
-                    class="w-[30px] h-[30px]"
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </template>
-            <template #default>
-              <ul class="info">
-                <li>
-                  <el-icon size="24"><Setting /></el-icon>系统设置
-                </li>
-                <li>
-                  <el-icon size="24"><Delete /></el-icon>删除所有对话
-                </li>
-                <li>
-                  <el-icon size="24"><Promotion /></el-icon>联系我们
-                </li>
-                <li>
-                  <el-icon size="24"><SwitchButton /></el-icon>退出登录
-                </li>
-              </ul>
-            </template>
-          </el-popover>
+          <DownApp :isExpand />
+          <UserCenter :isExpand />
         </div>
       </div>
     </aside>
@@ -181,15 +81,14 @@
 import ChatList from "./components/ChatList.vue";
 import TextArea from "./components/TextArea.vue";
 import ExpandFold from "./components/ExpandFold.vue";
+import DownApp from "./components/DownApp.vue";
+import UserCenter from "./components/UserCenter.vue";
 import MenuSvg from "@/assets/menu.svg";
 import ChatSvg from "@/assets/chat.svg";
 import IconSvg from "@/assets/icon.svg";
-
 import IconSvg1 from "@/assets/icon1.svg";
 import LogoSvg from "@/assets/logo.svg";
-import PhoneSvg from "@/assets/phone.svg";
 
-import { Delete, Setting, Promotion, SwitchButton, Top } from "@element-plus/icons-vue";
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { throttle } from "./utils";
 
@@ -269,11 +168,5 @@ $button-bg-2: #c6dcf8;
   line-height: 20px;
   display: flex;
   overflow: hidden;
-}
-
-.info {
-  li {
-    @apply flex items-center h-10 rounded-lg  py-2 px-3 cursor-pointer hover:bg-[#f5f5f5] gap-[10px] text-sm;
-  }
 }
 </style>

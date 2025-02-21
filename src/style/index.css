@@ -5,3 +5,7 @@
 :root:root {
   --el-color-primary: #4d6bfe;
 }
+
+.el-drawer__body {
+  padding: 0 !important;
+}

@@ -1,16 +1,9 @@
 <template>
   <!--手机 md 平板 xl电脑 -->
-
   <div class="h-full flex">
     <!-- 手机端header -->
     <header class="md:hidden absolute top-[10px] flex justify-between w-full px-4 h-[46px] items-center">
-      <div
-        class="icon"
-        @click="
-          showSide = true;
-          isExpand = true;
-        "
-      >
+      <div class="icon" @click="menuClick">
         <MenuSvg />
       </div>
       <div class="icon">
@@ -20,9 +13,10 @@
 
     <!-- 侧边栏 -->
     <aside
-      class="bg-[#f9fbff] absolute flex-col h-full max-md:hidden md:flex md:w-[68px]"
+      class="bg-[#f9fbff] flex-col h-full max-md:hidden md:flex md:w-[68px] z-50"
       :class="{ '!w-[260px] !flex top-0 left-0 h-full': isExpand }"
       v-if="showSide"
+      ref="asideRef"
     >
       <template v-if="isExpand">
         <div class="logo-contain" :class="{ '!flex-col': !isExpand }">
@@ -163,22 +157,43 @@
       </div>
     </aside>
 
-    <main class="flex-1 bg-red-200"></main>
+    <!-- 主体 -->
+    <main class="flex-1">
+      <div class="max-w-[800px] flex justify-center items-center flex-col m-auto px-16 h-full">
+        <div class="flex items-center flex-col" style="transform: translateY(-8vh)">
+          <div class="flex gap-[14px] text-2xl font-medium items-center mt-auto">
+            <IconSvg1 class="w-[60px] h-[60px]" />
+            <h2>我是 DeepSeek，很高兴见到你！</h2>
+          </div>
+          <p class="text-[#404040] mt-2 mb-5 text-sm">我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~</p>
+        </div>
+
+        <div class="w-full" style="transform: translateY(-8vh)">
+          <TextArea />
+        </div>
+        <div class="mb-[6px] text-[rgb(163,163,163)] text-xs fixed bottom-0 w-full text-center">内容由 AI 生成，请仔细甄别</div>
+      </div>
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
 import ChatList from "./components/ChatList.vue";
+import TextArea from "./components/TextArea.vue";
 import ExpandFold from "./components/ExpandFold.vue";
 import MenuSvg from "@/assets/menu.svg";
 import ChatSvg from "@/assets/chat.svg";
 import IconSvg from "@/assets/icon.svg";
+
+import IconSvg1 from "@/assets/icon1.svg";
 import LogoSvg from "@/assets/logo.svg";
 import PhoneSvg from "@/assets/phone.svg";
-import { Delete, Setting, Promotion, SwitchButton } from "@element-plus/icons-vue";
-import { onMounted, onUnmounted, ref } from "vue";
+
+import { Delete, Setting, Promotion, SwitchButton, Top } from "@element-plus/icons-vue";
+import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { throttle } from "./utils";
 
+const asideRef = ref();
 const isExpand = ref(true);
 const showSide = ref(false);
 
@@ -194,6 +209,13 @@ function handleResize() {
     showSide.value = true;
   }
 }
+
+const menuClick = async () => {
+  showSide.value = true;
+  await nextTick();
+  isExpand.value = true;
+  asideRef.value.style.position = "absolute";
+};
 
 onMounted(() => {
   handleResize();

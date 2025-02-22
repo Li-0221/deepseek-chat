@@ -59,13 +59,18 @@
 
     <!-- 主体 -->
     <main class="flex-1">
-      <div class="max-w-[800px] flex justify-center items-center flex-col m-auto px-16 h-full">
+      <div
+        class="max-w-[800px] flex items-center flex-col m-auto px-16 h-full overflow-y-auto"
+        :class="{ 'justify-center': route.path === '/new' }"
+      >
         <router-view v-slot="{ Component, route }">
           <transition appear name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.fullPath" />
           </transition>
         </router-view>
-        <div class="mb-[6px] text-[rgb(163,163,163)] text-xs fixed bottom-0 w-full text-center">内容由 AI 生成，请仔细甄别</div>
+        <div class="mb-[6px] text-[rgb(163,163,163)] text-xs fixed bottom-0 w-full text-center z-30">
+          内容由 AI 生成，请仔细甄别
+        </div>
       </div>
     </main>
   </div>
@@ -82,6 +87,9 @@ import IconSvg from "@/assets/svg/icon.svg";
 import LogoSvg from "@/assets/svg/logo.svg";
 import { throttle } from "../utils";
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const asideRef = ref();
 const isExpand = ref(true);

@@ -12,13 +12,13 @@
           <PhoneSvg :class="{ 'w-7 h-7': !isExpand }" />
           <template v-if="isExpand">
             <span class="mx-2">下载 App</span>
-            <img src="../assets/svg/new.svg" alt="" class="w-9 h-4" />
+            <img src="../../assets/svg/new.svg" alt="" class="w-9 h-4" />
           </template>
         </div>
       </template>
       <template #default>
         <div>
-          <img src="../assets/qrcode.png" alt="" />
+          <img src="../../assets/qrcode.png" alt="" />
           <p class="mt-2">扫码下载 DeepSeek APP</p>
         </div>
       </template>

@@ -1,97 +1,119 @@
 <template>
-  <div><div v-html="sanitizedHtml"></div></div>
+  <div class="flex py-4 w-full">
+    <img
+      class="w-10 h-10 rounded-full mr-5"
+      src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
+      alt=""
+    />
+    <div class="text-black p-4 flex-1" :class="wrapClass">
+      <div ref="textRef" class="leading-relaxed break-words">
+        <div v-if="!inversion">
+          <div v-if="!asRawText" class="markdown-body" v-html="text" />
+          <div v-else class="whitespace-pre-wrap" v-text="text" />
+        </div>
+        <div v-else class="whitespace-pre-wrap" v-text="text" />
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { onMounted, ref, onUnmounted } from "vue";
-import { parse } from "marked";
-import DOMPurify from "dompurify";
-// Using ES6 import syntax
-import hljs from "highlight.js/lib/core";
-import javascript from "highlight.js/lib/languages/javascript";
+<script lang="ts" setup>
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import MarkdownIt from "markdown-it";
+import MdKatex from "@vscode/markdown-it-katex";
+import MdLinkAttributes from "markdown-it-link-attributes";
+import hljs from "highlight.js";
+import { str } from "./md/hello-word";
+// TODO
+// import { str } from "./md/vue";
 
-// Then register the languages you need
-hljs.registerLanguage("javascript", javascript);
+const inversion = ref(false);
+const asRawText = ref(false);
+const mdString = ref("");
 
-const str = `
-# 目录结构
+const mdi = new MarkdownIt({
+  html: false,
+  linkify: true,
+  highlight(code, language) {
+    const validLang = !!(language && hljs.getLanguage(language));
+    if (validLang) {
+      const lang = language ?? "";
+      return highlightBlock(hljs.highlight(code, { language: lang }).value, lang);
+    }
+    return highlightBlock(hljs.highlightAuto(code).value, "");
+  }
+});
 
-## Geeker-Admin 目录说明 📚
+mdi.use(MdLinkAttributes, { attrs: { target: "_blank", rel: "noopener" } }).use(MdKatex);
 
-\`\`\`javascript
-Geeker-Admin
-├─ .husky                 # husky 配置文件
-├─ .vscode                # VSCode 推荐配置
-├─ build                  # Vite 配置项
-├─ public                 # 静态资源文件（该文件夹不会被打包）
-├─ src
-│  ├─ api                 # API 接口管理
-│  ├─ assets              # 静态资源文件
-│  ├─ components          # 全局组件
-│  ├─ config              # 全局配置项
-│  ├─ directives          # 全局指令文件
-│  ├─ enums               # 项目常用枚举
-│  ├─ hooks               # 常用 Hooks 封装
-│  ├─ languages           # 语言国际化 i18n
-│  ├─ layouts             # 框架布局模块
-│  ├─ routers             # 路由管理
-│  ├─ stores              # pinia store
-│  ├─ styles              # 全局样式文件
-│  ├─ typings             # 全局 ts 声明
-│  ├─ utils               # 常用工具库
-│  ├─ views               # 项目所有页面
-│  ├─ App.vue             # 项目主组件
-│  ├─ main.ts             # 项目入口文件
-│  └─ vite-env.d.ts       # 指定 ts 识别 vue
-├─ .editorconfig          # 统一不同编辑器的编码风格
-├─ .env                   # vite 常用配置
-├─ .env.development       # 开发环境配置
-├─ .env.production        # 生产环境配置
-├─ .env.test              # 测试环境配置
-├─ .eslintignore          # 忽略 Eslint 校验
-├─ .eslintrc.cjs          # Eslint 校验配置文件
-├─ .gitignore             # 忽略 git 提交
-├─ .prettierignore        # 忽略 Prettier 格式化
-├─ .prettierrc.cjs        # Prettier 格式化配置
-├─ .stylelintignore       # 忽略 stylelint 格式化
-├─ .stylelintrc.cjs       # stylelint 样式格式化配置
-├─ CHANGELOG.md           # 项目更新日志
-├─ commitlint.config.cjs  # git 提交规范配置
-├─ index.html             # 入口 html
-├─ LICENSE                # 开源协议文件
-├─ lint-staged.config.cjs # lint-staged 配置文件
-├─ package-lock.json      # 依赖包包版本锁
-├─ package.json           # 依赖包管理
-├─ postcss.config.cjs     # postcss 配置
-├─ README.md              # README 介绍
-├─ tsconfig.json          # typescript 全局配置
-└─ vite.config.ts         # vite 全局配置文件
-\`\`\`
-`;
-// 纯净的html
-const sanitizedHtml = ref("");
+const wrapClass = computed(() => {
+  return [
+    "text-wrap",
+    "min-w-[20px]",
+    "rounded-md",
+    inversion.value ? "bg-[#d2f9d1]" : "bg-[#f4f6f8]",
+    inversion.value ? "dark:bg-[#a1dc95]" : "dark:bg-[#1e1e20]",
+    inversion.value ? "message-request" : "message-reply"
+  ];
+});
 
-let timer;
+const text = computed(() => {
+  const value = mdString.value ?? "";
+  if (!asRawText.value) {
+    // 对数学公式进行处理，自动添加 $$ 符号
+    const escapedText = escapeBrackets(escapeDollarNumber(value));
+    return mdi.render(escapedText);
+  }
+  return value;
+});
 
+function highlightBlock(str: string, lang?: string) {
+  return `<pre class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header__lang">${lang}</span><span class="code-block-header__copy">复制代码</span></div><code class="hljs code-block-body ${lang}">${str}</code></pre>`;
+}
+
+function escapeDollarNumber(text: string) {
+  let escapedText = "";
+
+  for (let i = 0; i < text.length; i += 1) {
+    let char = text[i];
+    const nextChar = text[i + 1] || " ";
+
+    if (char === "$" && nextChar >= "0" && nextChar <= "9") char = "\\$";
+
+    escapedText += char;
+  }
+
+  return escapedText;
+}
+
+function escapeBrackets(text: string) {
+  const pattern = /(```[\s\S]*?```|`.*?`)|\\\[([\s\S]*?[^\\])\\\]|\\\((.*?)\\\)/g;
+  return text.replace(pattern, (match, codeBlock, squareBracket, roundBracket) => {
+    if (codeBlock) return codeBlock;
+    else if (squareBracket) return `$$${squareBracket}$$`;
+    else if (roundBracket) return `$${roundBracket}$`;
+    return match;
+  });
+}
+
+let timer: number;
 onMounted(() => {
   let index = 0;
   timer = setInterval(() => {
     if (index < str.length) {
-      const markdownContent = str.substring(0, index);
+      mdString.value = str.substring(0, index);
       index++;
-      const html = parse(markdownContent);
-      // 对 HTML 进行净化，防止 XSS 攻击
-      const cleanHtml = DOMPurify.sanitize(html);
-      debugger;
-      // const hlHtml = hljs.highlight(cleanHtml);
-      sanitizedHtml.value = cleanHtml;
     } else {
       clearInterval(timer);
     }
-  }, 100);
+  }, 10);
 });
 
 onUnmounted(() => {
   clearInterval(timer);
 });
 </script>
+
+<style lang="scss">
+@import url("./index.scss");
+</style>

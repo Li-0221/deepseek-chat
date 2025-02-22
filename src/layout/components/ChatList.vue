@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { Delete, EditPen } from "@element-plus/icons-vue";
-import { chats } from "../json/chat-list.json";
+import { chats } from "../../assets/json/chat-list.json";
 </script>
 
 <style lang="scss" scoped>

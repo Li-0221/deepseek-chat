@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import FoldInSvg from "@/assets/foldin.svg";
-import FoldOutSvg from "@/assets/foldout.svg";
+import FoldInSvg from "@/assets/svg/foldin.svg";
+import FoldOutSvg from "@/assets/svg/foldout.svg";
 
 const isExpand = defineModel("isExpand");
 </script>

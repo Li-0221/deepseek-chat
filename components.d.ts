@@ -25,6 +25,8 @@ declare module 'vue' {
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ExpandFold: typeof import('./src/components/ExpandFold.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     TextArea: typeof import('./src/components/TextArea.vue')['default']
     UserCenter: typeof import('./src/components/UserCenter.vue')['default']
   }

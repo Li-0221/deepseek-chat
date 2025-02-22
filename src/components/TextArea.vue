@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import FileSvg from "@/assets/file.svg";
-import IntSvg from "@/assets/int.svg";
-import ReactSvg from "@/assets/react.svg";
+import FileSvg from "@/assets/svg/file.svg";
+import IntSvg from "@/assets/svg/int.svg";
+import ReactSvg from "@/assets/svg/react.svg";
 import { ref } from "vue";
 
 const msg = ref("");

@@ -1,17 +1,20 @@
 <template>
-  <div class="flex py-4 w-full">
-    <img
-      class="w-10 h-10 rounded-full mr-5"
-      src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
-      alt=""
-    />
-    <div class="text-black p-4 flex-1" :class="wrapClass">
-      <div ref="textRef" class="leading-relaxed break-words">
-        <div v-if="!inversion">
-          <div v-if="!asRawText" class="markdown-body" v-html="text" />
+  <div class="pt-4 pb-10 w-full flex flex-col-reverse overflow-y-auto">
+    <!--TODO 抽成组件 -->
+    <div class="flex">
+      <img
+        class="w-10 h-10 rounded-full mr-5"
+        src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
+        alt=""
+      />
+      <div class="text-black p-4 flex-1" :class="wrapClass">
+        <div ref="textRef" class="leading-relaxed break-words">
+          <div v-if="!inversion">
+            <div v-if="!asRawText" class="markdown-body" v-html="text" />
+            <div v-else class="whitespace-pre-wrap" v-text="text" />
+          </div>
           <div v-else class="whitespace-pre-wrap" v-text="text" />
         </div>
-        <div v-else class="whitespace-pre-wrap" v-text="text" />
       </div>
     </div>
   </div>
@@ -23,9 +26,9 @@ import MarkdownIt from "markdown-it";
 import MdKatex from "@vscode/markdown-it-katex";
 import MdLinkAttributes from "markdown-it-link-attributes";
 import hljs from "highlight.js";
-import { str } from "./md/hello-word";
 // TODO
-// import { str } from "./md/vue";
+// import { str } from "./md/hello-word";
+import { str } from "./md/vue";
 
 const inversion = ref(false);
 const asRawText = ref(false);

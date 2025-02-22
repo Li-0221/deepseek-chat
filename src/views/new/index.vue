@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-16">
     <div class="flex items-center flex-col" style="transform: translateY(-8vh)">
       <div class="flex gap-[14px] text-2xl font-medium items-center mt-auto">
         <IconSvg1 class="w-[60px] h-[60px]" />

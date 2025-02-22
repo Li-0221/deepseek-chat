@@ -2,7 +2,7 @@
   <div class="chat-list">
     <ul v-for="(val, key) in chats" :key="key">
       <p class="time">{{ key }}</p>
-      <li v-for="item in val" :key="item.id">
+      <li v-for="item in val" :key="item.id" @click="router.push('/chat')">
         <span>{{ item.title }}</span>
         <el-dropdown placement="bottom-start" trigger="click">
           <el-icon class="icon"><MoreFilled /></el-icon>
@@ -21,6 +21,9 @@
 <script setup lang="ts">
 import { Delete, EditPen } from "@element-plus/icons-vue";
 import { chats } from "../../assets/json/chat-list.json";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 </script>
 
 <style lang="scss" scoped>

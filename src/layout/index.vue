@@ -24,7 +24,7 @@
         </div>
 
         <div class="mb-[34px] items-center flex">
-          <div class="new-chat bth px-[10px]">
+          <div class="new-chat bth px-[10px]" @click="router.push('/new')">
             <ChatSvg class="mr-[9px]" />
             开启新对话
           </div>
@@ -58,17 +58,14 @@
     </aside>
 
     <!-- 主体 -->
-    <main class="flex-1">
-      <div
-        class="max-w-[800px] flex items-center flex-col m-auto px-16 h-full overflow-y-auto"
-        :class="{ 'justify-center': route.path === '/new' }"
-      >
+    <main class="flex-1 pb-5 h-full overflow-y-auto">
+      <div class="max-w-[800px] flex items-center flex-col m-auto h-full" :class="{ 'justify-center': route.path === '/new' }">
         <router-view v-slot="{ Component, route }">
           <transition appear name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.fullPath" />
           </transition>
         </router-view>
-        <div class="mb-[6px] text-[rgb(163,163,163)] text-xs fixed bottom-0 w-full text-center z-30">
+        <div class="h-7 pt-1 shadow text-[rgb(163,163,163)] bg-white text-xs fixed bottom-0 w-full text-center z-30">
           内容由 AI 生成，请仔细甄别
         </div>
       </div>
@@ -87,17 +84,16 @@ import IconSvg from "@/assets/svg/icon.svg";
 import LogoSvg from "@/assets/svg/logo.svg";
 import { throttle } from "../utils";
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 
 const asideRef = ref();
 const isExpand = ref(true);
 const showSide = ref(false);
 
 function handleResize() {
-  // 从大于1280到小于1280的时候收起侧边栏
-  // 从小于1280到大于1280的时候展开侧边栏
   const width = window.innerWidth;
   if (width <= 768) {
     showSide.value = false;

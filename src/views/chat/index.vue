@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 pb-10 w-full flex flex-col-reverse overflow-y-auto">
+  <div class="max-md:px-4 max-md:pt-16 pt-4 pb-10 w-full flex flex-col-reverse overflow-y-auto">
     <!--TODO 抽成组件 -->
     <div class="flex">
       <img
@@ -27,8 +27,8 @@ import MdKatex from "@vscode/markdown-it-katex";
 import MdLinkAttributes from "markdown-it-link-attributes";
 import hljs from "highlight.js";
 // TODO
-// import { str } from "./md/hello-word";
-import { str } from "./md/vue";
+import { str } from "./md/hello-word";
+// import { str } from "./md/vue";
 
 const inversion = ref(false);
 const asRawText = ref(false);

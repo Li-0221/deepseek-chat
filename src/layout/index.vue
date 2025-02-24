@@ -1,7 +1,7 @@
 <template>
   <div class="h-full flex">
     <!-- 手机端header -->
-    <header class="md:hidden absolute top-[10px] flex justify-between w-full px-4 h-[46px] items-center">
+    <header class="md:hidden absolute top-0 pt-[10px] z-50 bg-white flex justify-between w-full px-4 h-[46px] items-center">
       <div class="icon" @click="menuClick">
         <MenuSvg />
       </div>

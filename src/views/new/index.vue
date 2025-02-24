@@ -1,7 +1,7 @@
 <template>
-  <div class="px-16">
-    <div class="flex items-center flex-col" style="transform: translateY(-8vh)">
-      <div class="flex gap-[14px] text-2xl font-medium items-center mt-auto">
+  <div class="px-4 md:px-16 w-full">
+    <div class="max-md:px-8 flex items-center flex-col" style="transform: translateY(-8vh)">
+      <div class="flex max-md:flex-col max-md:items-start gap-[14px] text-2xl font-medium items-center mt-auto">
         <IconSvg1 class="w-[60px] h-[60px]" />
         <h2>我是 DeepSeek，很高兴见到你！</h2>
       </div>

@@ -37,7 +37,7 @@ login:
   senseRetryAfter: 秒后重试
 
 chatNew:
-  senseHello: 我是 Ai 助手，很高兴见到你！
+  senseHello: 我是 Panda，很高兴见到你！
   senseDescribe: 我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~
 
 aside:

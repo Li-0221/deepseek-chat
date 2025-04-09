@@ -37,7 +37,7 @@ login:
   senseRetryAfter:  Try again in seconds
 
 chatNew:
-  senseHello:  I am Ai, nice to meet you!
+  senseHello:  I am Panda, nice to meet you!
   senseDescribe:  I can help you write code, read files, and write various creative content. Please leave your tasks to me~
 
 

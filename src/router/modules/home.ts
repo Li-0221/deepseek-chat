@@ -7,7 +7,7 @@ export default {
   component: Layout,
   meta: {
     icon: "ep:home-filled",
-    title: "Ai Chat",
+    title: "Panda Chat",
     rank: 0
   },
   children: [

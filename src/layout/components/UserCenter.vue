@@ -11,7 +11,7 @@
         >
           <img
             class="w-[30px] h-[30px] rounded-full"
-            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            src="@/assets/logo2.png"
             alt=""
           />
           <span v-if="!isCollapse">个人信息</span>

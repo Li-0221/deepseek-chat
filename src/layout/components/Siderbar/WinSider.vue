@@ -1,7 +1,7 @@
 <template>
   <aside ref="asideRef" class="bg-[#f9fbff] flex-col h-full flex w-[260px]">
     <div class="logo-contain">
-      <div class="text-primary font-bold text-2xl">Ai Chat</div>
+      <div class="text-primary font-bold text-2xl">Panda Chat</div>
       <ExpandFold v-if="!isDrawer" />
       <div v-else class="icon" @click="emit('closeDrawer')">
         <MenuSvg />
@@ -13,10 +13,6 @@
         <ChatSvg class="mr-[9px]" />
         开启新对话
       </div>
-
-      <el-button type="primary" link class="mr-5" @click="openHPC">
-        HPC
-      </el-button>
     </div>
 
     <TalkList />

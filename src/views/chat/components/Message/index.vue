@@ -4,9 +4,10 @@
     class="flex w-full mb-6 overflow-hidden"
     :class="[{ 'flex-row-reverse': inversion }]"
   >
-    <Logo
+    <img
       v-if="!inversion"
-      class="w-10 h-10 rounded-full mr-2 md:mr-5 text-primary"
+      src="@/assets/logo1.png"
+      class="h-10 rounded-full mr-2 md:mr-5"
     />
     <div
       class="overflow-hidden text-sm flex-1"
@@ -78,7 +79,6 @@ import { useBasicLayout } from "@/hooks/useBasicLayout";
 import { copyToClip } from "@/utils/copy";
 import { useI18n } from "vue-i18n";
 import { message } from "@/utils/message";
-import Logo from "@/assets/svg/logo2.svg?component";
 import dayjs from "dayjs";
 
 interface Props {

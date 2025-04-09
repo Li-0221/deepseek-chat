@@ -1,6 +1,6 @@
 {
   "Version": "5.9.0",
-  "Title": "聊天助手",
+  "Title": " 🐼 熊猫聊天",
   "FixedHeader": true,
   "HiddenSideBar": false,
   "MultiTagsCache": false,
@@ -16,7 +16,7 @@
   "HideFooter": false,
   "Stretch": false,
   "SidebarStatus": true,
-  "EpThemeColor": "#0059c7",
+  "EpThemeColor": "#2d1a24",
   "ShowLogo": true,
   "ShowModel": "smart",
   "MenuArrowIconNoTransition": false,

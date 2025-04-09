@@ -8,7 +8,7 @@
         <div
           class="flex max-md:flex-col max-md:items-start gap-[14px] text-2xl font-medium items-center mt-auto"
         >
-          <Logo class="w-[60px] h-[60px] text-primary" />
+          <img src="@/assets/logo5.png" class="w-[100px]" />
           <h2>{{ t("chatNew.senseHello") }}</h2>
         </div>
         <p class="text-[#404040] mt-2 mb-5 text-sm">

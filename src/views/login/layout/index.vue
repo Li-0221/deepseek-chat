@@ -38,7 +38,7 @@
     <div class="login-container">
       <div class="login-box">
         <div class="w-80">
-          <Logo1 class="w-32 text-primary mx-auto" />
+          <img src="@/assets/logo1.png" class="w-32 mx-auto" />
           <RouterView />
         </div>
       </div>
@@ -53,7 +53,6 @@ import { useTranslationLang } from "@/hooks/useTranslationLang";
 import { useDataThemeChange } from "@/hooks/useDataThemeChange";
 import globalization from "@/assets/svg/globalization.svg?component";
 import Check from "@iconify-icons/ep/check";
-import Logo1 from "@/assets/svg/logo1.svg?component";
 
 defineOptions({
   name: "Login"

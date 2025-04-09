@@ -9,7 +9,7 @@
         autofocus
         :autosize="{ minRows: 2, maxRows: 12 }"
         type="textarea"
-        placeholder="给 SenseArray 发送消息"
+        placeholder="给 Ai 助手发送消息"
         @keypress="handleEnter"
       />
 

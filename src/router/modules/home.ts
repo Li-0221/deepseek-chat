@@ -7,7 +7,7 @@ export default {
   component: Layout,
   meta: {
     icon: "ep:home-filled",
-    title: "善思开悟",
+    title: "Ai Chat",
     rank: 0
   },
   children: [

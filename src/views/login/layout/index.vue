@@ -43,12 +43,6 @@
         </div>
       </div>
     </div>
-
-    <footer class="text-center text-primary text-xs">
-      <a href="https://beian.miit.gov.cn" target="_blank">
-        蜀ICP备2023024572号-2
-      </a>
-    </footer>
   </div>
 </template>
 

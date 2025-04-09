@@ -31,21 +31,6 @@
               :prefix-icon="useRenderIcon(Lock)"
             />
           </el-form-item>
-
-          <el-form-item prop="isAgree" class="agree-checkbox">
-            <el-checkbox v-model="ruleForm.isAgree" size="large" :value="true">
-              <div class="ml-1 text-xs font-normal">
-                {{ t("login.senseUserAgreement") }}
-                <a href="" class="text-primary">
-                  {{ t("login.senseUserAgreement") }}
-                </a>
-                {{ t("login.senseAnd") }}
-                <a href="" class="text-primary">
-                  {{ t("login.sensePrivacyPolicy") }}
-                </a>
-              </div>
-            </el-checkbox>
-          </el-form-item>
         </Motion>
 
         <Motion :delay="250">
@@ -69,7 +54,7 @@
         </Motion>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane :label="t('login.senseSMSLogin')" name="SMS">
+    <!-- <el-tab-pane :label="t('login.senseSMSLogin')" name="SMS">
       <el-form ref="smsFormRef" :model="smsForm" :rules="smsRules" size="large">
         <Motion :delay="100">
           <el-form-item prop="username">
@@ -146,7 +131,7 @@
           </el-button>
         </Motion>
       </el-form>
-    </el-tab-pane>
+    </el-tab-pane> -->
   </el-tabs>
 </template>
 
@@ -177,24 +162,21 @@ const loginType = ref("PWD");
 
 const ruleForm = reactive({
   username: "",
-  password: "",
-  isAgree: false
+  password: ""
 });
 
 const loginRules = reactive<FormRules>({
   username: [
     { required: true, message: t("login.senseAccountReg"), trigger: "blur" }
   ],
-  password: [{ validator: passwordValidator, trigger: "blur" }],
-  isAgree: [{ validator: isAgreeValidator, trigger: "change" }]
+  password: [{ validator: passwordValidator, trigger: "blur" }]
 });
 
 const smsFormRef = ref<FormInstance>();
 const timer = ref(0);
 const smsForm = reactive({
   username: "",
-  password: "",
-  isAgree: false
+  password: ""
 });
 
 const smsRules = reactive<FormRules>({

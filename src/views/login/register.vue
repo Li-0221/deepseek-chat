@@ -34,22 +34,6 @@
         />
       </el-form-item>
     </Motion>
-    <Motion :delay="200">
-      <el-form-item prop="isAgree">
-        <el-checkbox v-model="ruleForm.isAgree" size="large" :value="true">
-          <div class="ml-1 text-xs font-normal">
-            {{ t("login.senseUserAgreement") }}
-            <a href="" class="text-primary">
-              {{ t("login.senseUserAgreement") }}
-            </a>
-            {{ t("login.senseAnd") }}
-            <a href="" class="text-primary">
-              {{ t("login.sensePrivacyPolicy") }}
-            </a>
-          </div>
-        </el-checkbox>
-      </el-form-item>
-    </Motion>
 
     <Motion :delay="250">
       <el-button
@@ -78,7 +62,7 @@ import Motion from "./utils/motion";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { message } from "@/utils/message";
-import { isAgreeValidator, passwordValidator, Validator } from "./utils/rule";
+import { passwordValidator, Validator } from "./utils/rule";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import Lock from "@iconify-icons/ri/lock-fill";
 import User from "@iconify-icons/ri/user-3-fill";
@@ -103,8 +87,7 @@ const loading = ref(false);
 const ruleForm = reactive({
   username: "",
   password: "",
-  passwordAgain: "",
-  isAgree: false
+  passwordAgain: ""
 });
 
 const rules = reactive<FormRules>({
@@ -119,8 +102,7 @@ const rules = reactive<FormRules>({
       trigger: "blur"
     },
     { validator: passwordAgainValidator, trigger: "blur" }
-  ],
-  isAgree: [{ validator: isAgreeValidator, trigger: "change" }]
+  ]
 });
 
 const onLogin = async (formEl: FormInstance | undefined) => {

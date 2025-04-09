@@ -1,7 +1,7 @@
 <template>
   <aside ref="asideRef" class="bg-[#f9fbff] flex-col h-full flex w-[260px]">
     <div class="logo-contain">
-      <div class="text-primary font-bold text-2xl">SENSE ARRAY</div>
+      <div class="text-primary font-bold text-2xl">Ai Chat</div>
       <ExpandFold v-if="!isDrawer" />
       <div v-else class="icon" @click="emit('closeDrawer')">
         <MenuSvg />

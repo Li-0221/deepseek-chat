@@ -18,7 +18,7 @@ login:
   senseConfirm: 确定
   senseToLogin: 已有账号？去登录
   sensePasswordAgain: 请再次输入密码
-  senseLoginTip: 您所在地区仅支持 账号 / 短信 登录
+  senseLoginTip: 您所在地区仅支持 账号 登录
   senseAccount: 账号
   sensePassword: 密码
   senseLogin: 登录
@@ -37,7 +37,7 @@ login:
   senseRetryAfter: 秒后重试
 
 chatNew:
-  senseHello: 我是 SenseArray，很高兴见到你！
+  senseHello: 我是 Ai 助手，很高兴见到你！
   senseDescribe: 我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~
 
 aside:

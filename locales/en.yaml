@@ -1,0 +1,48 @@
+menus:
+  senseHome: Home
+  senseLogin: Login
+  senseAbnormal: Abnormal Page
+  senseFourZeroFour: "404"
+  senseFourZeroOne: "403"
+  senseFive: "500"
+  sensePermission: Permission Manage
+  sensePermissionPage: Page Permission
+  sensePermissionButton: Button Permission
+  sensePermissionButtonRouter: Route return button permission
+  sensePermissionButtonLogin: Login interface return button permission
+
+login:
+  senseAccountLogin: AccountLogin
+  senseSMSLogin: SMSLogin
+  senseRegister: Register
+  senseConfirm: Confirm
+  senseToLogin: Already have an account? go login
+  sensePasswordAgain: Please enter your password again
+  senseLoginTip: Your region only supports account/SMS login
+  senseAccount: Account
+  sensePassword: Password
+  senseLogin: Login
+  senseLoginSuccess: Login Success
+  senseAccountReg: Please enter account
+  sensePassWordReg: Please enter password
+  sensePassWordAgainReg: Please enter your password again
+  sensePassWordAgainRuleReg: The two password inputs are inconsistent
+  sensePassWordRuleReg: The password format should be any combination of 8-18 digits, uppercase and lowercase letters, and symbols
+  senseAgree: I have read and agree with
+  senseUserAgreement: User Agreement
+  senseAnd: and
+  sensePrivacyPolicy: Privacy Policy
+  senseAgreeReg: Please agree and check the terms of service
+  senseSendSMS:  Send verification code
+  senseRetryAfter:  Try again in seconds
+
+chatNew:
+  senseHello:  I am SenseArray, nice to meet you!
+  senseDescribe:  I can help you write code, read files, and write various creative content. Please leave your tasks to me~
+
+
+aside:
+  today: today
+  yesterday: yesterday
+  within7Days: within7Days
+  within30Days: within30Days

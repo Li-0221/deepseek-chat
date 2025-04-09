@@ -1,0 +1,52 @@
+# 定义流水线阶段：先安装依赖，后构建项目
+stages:
+  - install
+  - build
+
+# 全局缓存配置（若子任务未覆盖则生效）
+cache:
+  key:
+    # 根据 pnpm-lock.yaml 文件内容生成唯一缓存 key（关键！依赖锁文件变化时自动刷新缓存）
+    files:
+      - pnpm-lock.yaml
+  paths:
+    - .pnpm-store/     # pnpm 的离线包存储目录
+    - node_modules/    # 项目依赖目录
+  policy: pull-push    # 默认策略：先尝试拉取缓存，任务结束后推送更新
+
+# 依赖安装任务
+install_dependencies:
+  stage: install
+  image: node:20-alpine
+  script:
+    # 核心命令：使用 pnpm 安装依赖
+    - npm install pnpm -g
+    - pnpm install --frozen-lockfile --prefer-offline
+  cache:
+    policy: push       # 仅在此任务主动更新缓存（防止后续任务污染缓存）
+    key: ${CI_COMMIT_REF_SLUG}  # 按分支名隔离缓存（不同分支互不影响）
+    paths:
+      - .pnpm-store/
+      - node_modules/  # 缓存完整依赖目录
+
+# 项目构建任务
+build_project:
+  stage: build
+  image: node:20-alpine
+  before_script:
+    - npm install pnpm -g
+    # 依赖完整性校验：失败则重新安装（兜底机制）
+    - pnpm check || pnpm install --frozen-lockfile
+  script:
+    # 执行构建命令（假设 package.json 中定义了 build 脚本）
+    - pnpm build
+  cache:
+    policy: pull       # 仅拉取缓存，不上传新内容（避免构建阶段意外修改缓存）
+    key: ${CI_COMMIT_REF_SLUG}  # 必须与 install 阶段 key 一致
+    paths:
+      - .pnpm-store/
+      - node_modules/
+  artifacts:
+    paths:
+      - dist/   # 存档构建产物
+    expire_in: 1 week  # 产物有效期

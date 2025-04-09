@@ -5,20 +5,21 @@
       popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 6px;"
     >
       <template #reference>
-        <div class="h-12 p-2 flex items-center text-[#525252] rounded-xl cursor-pointer hover:bg-[rgb(239,246,255)]">
-          <div class="mr-2 rounded-full overflow-hidden">
-            <img
-              class="w-[30px] h-[30px]"
-              src="https://thirdwx.qlogo.cn/mmopen/vi_32/y8cR4NwgMcTa5icC5nuc78kRbTibktKibvMXjcVpYtLfjICqyugZ7KM8lfL6DqolKwuaZexIhjH70pnicI9Ava28Iutrcic6rvnMGlCU6aiambO7k/132"
-              alt=""
-            />
-          </div>
-          <span v-if="isExpand">个人信息</span>
+        <div
+          class="h-12 p-2 flex items-center gap-2 text-[#525252] rounded-xl cursor-pointer hover:bg-[rgb(239,246,255)]"
+          :class="{ 'justify-center': isCollapse }"
+        >
+          <img
+            class="w-[30px] h-[30px] rounded-full"
+            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            alt=""
+          />
+          <span v-if="!isCollapse">个人信息</span>
         </div>
       </template>
       <template #default>
         <ul class="info">
-          <li>
+          <!-- <li>
             <el-icon size="24"><Setting /></el-icon>系统设置
           </li>
           <li>
@@ -26,8 +27,8 @@
           </li>
           <li>
             <el-icon size="24"><Promotion /></el-icon>联系我们
-          </li>
-          <li>
+          </li> -->
+          <li @click="logout">
             <el-icon size="24"><SwitchButton /></el-icon>退出登录
           </li>
         </ul>
@@ -37,9 +38,27 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  isExpand: Boolean
-});
+import { useChatStoreHook } from "@/store/modules/chat";
+import {
+  Setting,
+  Delete,
+  Promotion,
+  SwitchButton
+} from "@element-plus/icons-vue";
+import { removeToken } from "@/utils/auth";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { message } from "@/utils/message";
+
+const router = useRouter();
+
+const isCollapse = computed(() => useChatStoreHook().isCollapse);
+
+const logout = () => {
+  removeToken();
+  router.replace("/login");
+  message("退出成功!", { type: "success" });
+};
 </script>
 
 <style lang="scss" scoped>

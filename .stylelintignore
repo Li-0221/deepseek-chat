@@ -1,4 +1,6 @@
 /dist/*
 /public/*
 public/*
-stats.html
+src/style/reset.scss
+src/style/github-markdown.scss
+src/views/chat/components/Message/index.scss

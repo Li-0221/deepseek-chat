@@ -1,0 +1,78 @@
+menus:
+  senseHome: 首页
+  senseLogin: 登录
+  senseAbnormal: 异常页面
+  senseFourZeroFour: "404"
+  senseFourZeroOne: "403"
+  senseFive: "500"
+  sensePermission: 权限管理
+  sensePermissionPage: 页面权限
+  sensePermissionButton: 按钮权限
+  sensePermissionButtonRouter: 路由返回按钮权限
+  sensePermissionButtonLogin: 登录接口返回按钮权限
+
+login:
+  senseAccountLogin: 账号登录
+  senseSMSLogin: 短信登录
+  senseRegister: 注册账号
+  senseConfirm: 确定
+  senseToLogin: 已有账号？去登录
+  sensePasswordAgain: 请再次输入密码
+  senseLoginTip: 您所在地区仅支持 账号 / 短信 登录
+  senseAccount: 账号
+  sensePassword: 密码
+  senseLogin: 登录
+  senseLoginSuccess: 登录成功
+  senseAccountReg: 请输入账号
+  sensePassWordReg: 请输入密码
+  sensePassWordAgainReg: 请再次输入密码
+  sensePassWordAgainRuleReg: 两次密码输入不一致
+  sensePassWordRuleReg: 密码格式应为8-18位数字、大小写字母、符号的任意两种组合
+  senseAgree: 我已阅读并同意
+  senseUserAgreement: 用户协议
+  senseAnd: 和
+  sensePrivacyPolicy: 隐私政策
+  senseAgreeReg: 请同意并勾选服务条款
+  senseSendSMS: 发送验证码
+  senseRetryAfter: 秒后重试
+
+chatNew:
+  senseHello: 我是 SenseArray，很高兴见到你！
+  senseDescribe: 我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~
+
+aside:
+  today: 今天
+  yesterday: 昨天
+  within7Days: 7天内
+  within30Days: 30天内
+
+chat:
+  senseCopy: 复制
+  senseDelete: 删除
+  sensePreview: '预览'
+  senseShowRawText: '显示原文'
+  senseCopied: '复制成功'
+  senseCopyFailed: '复制失败'
+
+  newChatButton: '新建聊天'
+  newChatTitle: '新建聊天'
+  placeholder: '来说点什么吧...（Shift + Enter = 换行，"/" 触发提示词）'
+  placeholderMobile: '来说点什么...'
+  copy: '复制'
+  copyCode: '复制代码'
+  clearChat: '清空会话'
+  clearChatConfirm: '是否清空会话?'
+  exportImage: '保存会话到图片'
+  exportImageConfirm: '是否将会话保存为图片?'
+  exportSuccess: '保存成功'
+  exportFailed: '保存失败'
+  usingContext: '上下文模式'
+  turnOnContext: '当前模式下  发送消息会携带之前的聊天记录'
+  turnOffContext: '当前模式下  发送消息不会携带之前的聊天记录'
+  deleteMessage: '删除消息'
+  deleteMessageConfirm: '是否删除此消息?'
+  deleteHistoryConfirm: '确定删除此记录?'
+  clearHistoryConfirm: '确定清空记录?'
+
+
+  thinking: '思考中...'

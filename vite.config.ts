@@ -27,7 +27,8 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       proxy: {
         "/api": {
           // target: "http://8.138.169.203:8001",
-          target: "http://192.168.110.250:5001",
+          target: "http://127.0.0.1:8000",
+          //  target: "http://192.168.108.89:5001",
           changeOrigin: true
         }
       },
